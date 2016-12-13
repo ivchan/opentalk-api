@@ -39,4 +39,6 @@ dependencies {
     compile("org.springframework.data:spring-data-commons:1.12.5.RELEASE")
     compile("org.springframework.data:spring-data-jpa:1.10.5.RELEASE")
     compile("org.springframework:spring-context:4.3.4.RELEASE")
+    testCompile("junit:junit:4.12")
+    testCompile("org.mockito:mockito-all:1.10.19")
 }
