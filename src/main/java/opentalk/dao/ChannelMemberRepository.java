@@ -1,7 +1,7 @@
 package opentalk.dao;
 
 import opentalk.domainmodel.ChannelMember;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -11,5 +11,5 @@ import java.util.UUID;
  */
 
 @Repository
-public interface ChannelMemberRepository extends CrudRepository<ChannelMember, UUID>, ChannelMemberRepositoryCustom {
+public interface ChannelMemberRepository extends MongoRepository<ChannelMember, UUID>, ChannelMemberRepositoryCustom {
 }

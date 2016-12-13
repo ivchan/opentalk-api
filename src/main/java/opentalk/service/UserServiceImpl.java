@@ -58,7 +58,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UUID checkLogin(LoginModel loginModel) {
-        User userLogin = _userRepository.findOne(loginModel.getLoginName());
-        return (userLogin != null) ? userLogin.getUserKey() : null;
+        //User userLogin = _userRepository.findOne(loginModel.getLoginName());
+        //return (userLogin != null) ? userLogin.getUserKey() : null;
+        return null;
     }
 }

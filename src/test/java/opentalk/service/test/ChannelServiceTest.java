@@ -43,14 +43,12 @@ public class ChannelServiceTest {
         channelToAdd.setChannelKey(channelKey);
         channelToAdd.setChannelName(channelName);
         channelToAdd.setPublicChannel(false);
-        channelToAdd.setStatus(ChannelStatus.Active);
         when(mockChannelRepository.save(channelToAdd)).thenReturn(channelToAdd);
         Channel newChannel = channelService.addChannel(channelToAdd);
 
         assertNotNull(newChannel);
         assertEquals("Channel key should be matched.", newChannel.getChannelKey(), channelToAdd.getChannelKey());
         assertEquals("Channel name should be matched.", newChannel.getChannelName(), channelToAdd.getChannelName());
-        assertEquals("Status should be matched.", newChannel.getStatus(), channelToAdd.getStatus());
         assertEquals("Public channel flag should be matched.", newChannel.isPublicChannel(), channelToAdd.isPublicChannel());
     }
 
@@ -62,7 +60,6 @@ public class ChannelServiceTest {
         channelToAdd.setChannelKey(channelKey);
         channelToAdd.setChannelName(channelName);
         channelToAdd.setPublicChannel(false);
-        channelToAdd.setStatus(ChannelStatus.Active);
         when(mockChannelRepository.save(channelToAdd)).thenReturn(channelToAdd);
         Channel newChannel = channelService.addChannel(channelToAdd);
 
@@ -292,7 +289,7 @@ public class ChannelServiceTest {
         listChannelMembers.add(memberA);
         listChannelMembers.add(memberB);
         listChannelMembers.add(memberC);
-        when(mockChannelMemberRepository.listMembers(channelKey)).thenReturn(listChannelMembers);
+        //when(mockChannelMemberRepository.listMembers(channelKey)).thenReturn(listChannelMembers);
         channelService.setChannelKey(channelKey);
         List<ChannelMember> listExistChannelMembers = channelService.listChannelMembers();
         assertNotNull("Returned channel member list should not be null", listExistChannelMembers);

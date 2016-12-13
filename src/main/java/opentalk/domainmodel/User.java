@@ -4,28 +4,26 @@
 
 package opentalk.domainmodel;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.persistence.*;
 import java.util.*;
 
-@Entity
-@Table(name = "adm_user")
+@Document(collection = "adm_user")
 public class User extends BasePersistenceModel {
     @Id
-    @Column(name = "user_key")
+    @Field("user_key")
     private UUID userKey;
-    @Column(name = "user_id", nullable =  false, length = 20)
+    @Field("user_id")
     private String userID;
-    @Column(name = "user_name", nullable = false, length = 100)
+    @Field("user_name")
     private String userName;
-    @Column(name = "user_email", nullable = false, length = 100)
+    @Field("user_email")
     private String userEmail;
-    @OneToMany(mappedBy = "userKey", cascade = CascadeType.ALL)
-    public Set<ChannelMember> channelMember;
-    @OneToMany(mappedBy = "userKey", cascade = CascadeType.ALL)
-    public Set<DomainMember> domainMember;
 
     public User() {
-        this.userKey = new UUID(0L, 0L);
+        this.userKey = UUID.randomUUID();
         this.userID = "";
         this.userName = "";
         this.userEmail = "";
@@ -68,21 +66,5 @@ public class User extends BasePersistenceModel {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
-    }
-
-    public Set<ChannelMember> getChannelMember() {
-        return channelMember;
-    }
-
-    public void setChannelMember(Set<ChannelMember> channelMember) {
-        this.channelMember = channelMember;
-    }
-
-    public Set<DomainMember> getDomainMember() {
-        return domainMember;
-    }
-
-    public void setDomainMember(Set<DomainMember> domainMember) {
-        this.domainMember = domainMember;
     }
 }

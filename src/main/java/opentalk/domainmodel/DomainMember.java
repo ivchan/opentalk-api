@@ -1,26 +1,25 @@
 package opentalk.domainmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by ivanchan on 7/11/2016.
  */
-@Entity
-@Table(name = "adm_domain_member")
+@Document(collection = "adm_domain_member")
 public class DomainMember extends BasePersistenceModel implements Serializable{
     @Id
-    @Column(name = "domain_member_key")
+    @Field("domain_member_key")
     private UUID domainMemberKey;
 
-    @Column(name = "user_key")
+    @Field("user_key")
     private UUID userKey;
 
-    @Column(name = "domain_key")
+    @Field("domain_key")
     private UUID domainKey;
 
     public UUID getDomainMemberKey() {

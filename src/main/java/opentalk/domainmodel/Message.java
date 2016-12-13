@@ -1,5 +1,7 @@
 package opentalk.domainmodel;
 
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -10,15 +12,15 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class Message extends BasePersistenceModel {
     @Id
-    @Column(name = "message_id")
+    @Field("message_id")
     private UUID messageKey;
-    @Column(name = "parent_message", nullable = true)
+    @Field("parent_message")
     private UUID parentMessageKey;
-    @Column(name = "channel", nullable = false)
+    @Field("channel")
     private UUID channelKey;
-    @Column(name = "create_by", nullable = false)
+    @Field("create_by")
     private UUID createBy;
-    @Column(name = "content", nullable = true, length = 255)
+    @Field("content")
     private String messageContent;
 
     public UUID getMessageKey() {

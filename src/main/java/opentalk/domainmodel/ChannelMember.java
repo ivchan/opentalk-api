@@ -1,9 +1,9 @@
 package opentalk.domainmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -11,21 +11,20 @@ import java.util.UUID;
  * Created by ivanchan on 11/7/16.
  */
 
-@Entity
-@Table(name = "team_channel_member")
+@Document(collection = "team_channel_member")
 public class ChannelMember extends BasePersistenceModel implements Serializable {
     @Id
-    @Column(name = "channel_member_key")
+    @Field("channel_member_key")
     private UUID ChannelMemberKey;
 
-    @Column(name = "user_key")
+    @Field("user_key")
     private UUID userKey;
 
-    @Column(name = "channel_key")
+    @Field("channel_key")
     private UUID channelKey;
 
     public ChannelMember() {
-        ChannelMemberKey = null;
+        ChannelMemberKey = UUID.randomUUID();
         userKey = null;
         channelKey = null;
     }

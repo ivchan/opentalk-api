@@ -23,31 +23,37 @@ public class InitialDBController {
         User userIvan = new User();
         userIvan.setUserKey(UUID.randomUUID());
         userIvan.setUserName("Ivan Chan");
+        userIvan.setUserID("ivanchan");
         userIvan.setUserEmail("29january@gmail.com");
 
         User userRay = new User();
         userRay.setUserKey(UUID.randomUUID());
         userRay.setUserName("Ray Chung");
+        userRay.setUserID("raychung");
         userRay.setUserEmail("ray@gmail.com");
 
         User userJoseph = new User();
         userJoseph.setUserKey(UUID.randomUUID());
         userJoseph.setUserName("Joseph Ting");
+        userJoseph.setUserID("josephting");
         userJoseph.setUserEmail("jjting@gmail.com");
 
         User userKing = new User();
         userKing.setUserKey(UUID.randomUUID());
         userKing.setUserName("King Chau");
+        userKing.setUserID("kingchau");
         userKing.setUserEmail("king@gmail.com");
 
         User userBless = new User();
         userBless.setUserKey(UUID.randomUUID());
         userBless.setUserName("Bless Lei");
+        userBless.setUserID("blesslei");
         userBless.setUserEmail("bless@gmail.com");
 
         User userCherrie = new User();
         userCherrie.setUserKey(UUID.randomUUID());
         userCherrie.setUserName("Cherrie Chan");
+        userCherrie.setUserID("cherriechan");
         userCherrie.setUserEmail("cherrie@gmail.com");
 
         _userService.addUser(userIvan);

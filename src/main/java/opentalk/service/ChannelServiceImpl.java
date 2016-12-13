@@ -58,12 +58,14 @@ public class ChannelServiceImpl implements ChannelService {
 
     @Override
     public List<Channel> listPublicChannels() {
-        return (List<Channel>)_channelRepository.findPublicChannels();
+        //return (List<Channel>)_channelRepository.findPublicChannels();
+        return (List<Channel>)_channelRepository.findAll();
     }
 
     @Override
     public List<Channel> listPrivateChannels() {
-        return (List<Channel>)_channelRepository.findPrivateChannels();
+        //return (List<Channel>)_channelRepository.findPrivateChannels();
+        return (List<Channel>)_channelRepository.findAll();
     }
 
     @Override
@@ -133,6 +135,7 @@ public class ChannelServiceImpl implements ChannelService {
         if ((this._channelKey == null) || (this._channelKey.equals(new UUID(0, 0)))) {
             throw new IllegalArgumentException("Channel key should not be empty");
         }
-        return (List<ChannelMember>)_channelMemberRepository.listMembers(_channelKey);
+        //return (List<ChannelMember>)_channelMemberRepository.listMembers(_channelKey);
+        return null;
     }
 }

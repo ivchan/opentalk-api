@@ -1,36 +1,32 @@
 package opentalk.domainmodel;
 
-import javax.persistence.*;
-import java.util.Set;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import javax.persistence.Id;
 import java.util.UUID;
 
 /**
  * Created by ivanchan on 11/7/16.
  */
 
-@Entity
-@Table(name = "team_channel")
+@Document(collection = "team_channel")
 public class Channel extends BasePersistenceModel {
     @Id
-    @Column(name = "channel_key")
+    @Field("channel_key")
     private UUID channelKey;
-    @Column(name = "channel_name", length = 20, nullable = false)
+    @Field("channel_name")
     private String channelName;
-    @Column(name = "channel_desc", length = 100)
+    @Field("channel_desc")
     private String channelDescription;
-    @Column(name = "is_public_channel")
+    @Field("is_public_channel")
     private boolean isPublicChannel;
-    @Column(name = "status")
-    private ChannelStatus status;
-    @OneToMany(mappedBy = "channelKey")
-    private Set<ChannelMember> channelMembers;
 
     public Channel() {
-        this.channelKey = null;
+        this.channelKey = UUID.randomUUID();
         this.channelName = "";
         this.channelDescription = "";
         this.isPublicChannel = false;
-        this.status = ChannelStatus.Active;
     }
 
     public Channel(UUID channelKey, String channelName, String channelDescription, boolean isPublicChannel, ChannelStatus status) {
@@ -38,7 +34,6 @@ public class Channel extends BasePersistenceModel {
         this.channelName = channelName;
         this.channelDescription = channelDescription;
         this.isPublicChannel = isPublicChannel;
-        this.status = status;
     }
 
     public UUID getChannelKey() {
@@ -71,21 +66,5 @@ public class Channel extends BasePersistenceModel {
 
     public void setPublicChannel(boolean publicChannel) {
         isPublicChannel = publicChannel;
-    }
-
-    public ChannelStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ChannelStatus status) {
-        this.status = status;
-    }
-
-    public Set<ChannelMember> getChannelMembers() {
-        return channelMembers;
-    }
-
-    public void setChannelMembers(Set<ChannelMember> channelMembers) {
-        this.channelMembers = channelMembers;
     }
 }
