@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=p@ssw0rd!
+      - POSTGRES_DB=opentalkdb-dev
+    volumes:
+      - /opt/docker/postgresql/data:/var/lib/postgresql/data
+
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  mongo:
+    restart: always
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/docker/mongo/data:/data/db
