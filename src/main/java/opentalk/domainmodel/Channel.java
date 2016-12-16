@@ -1,10 +1,9 @@
 package opentalk.domainmodel;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.persistence.Id;
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 11/7/16.
@@ -13,8 +12,7 @@ import java.util.UUID;
 @Document(collection = "team_channel")
 public class Channel extends BasePersistenceModel {
     @Id
-    @Field("channel_key")
-    private UUID channelKey;
+    private ObjectId channelKey;
     @Field("channel_name")
     private String channelName;
     @Field("channel_desc")
@@ -23,24 +21,24 @@ public class Channel extends BasePersistenceModel {
     private boolean isPublicChannel;
 
     public Channel() {
-        this.channelKey = UUID.randomUUID();
+        this.channelKey = new ObjectId();
         this.channelName = "";
         this.channelDescription = "";
         this.isPublicChannel = false;
     }
 
-    public Channel(UUID channelKey, String channelName, String channelDescription, boolean isPublicChannel, ChannelStatus status) {
+    public Channel(ObjectId channelKey, String channelName, String channelDescription, boolean isPublicChannel, ChannelStatus status) {
         this.channelKey = channelKey;
         this.channelName = channelName;
         this.channelDescription = channelDescription;
         this.isPublicChannel = isPublicChannel;
     }
 
-    public UUID getChannelKey() {
+    public ObjectId getChannelKey() {
         return channelKey;
     }
 
-    public void setChannelKey(UUID channelKey) {
+    public void setChannelKey(ObjectId channelKey) {
         this.channelKey = channelKey;
     }
 

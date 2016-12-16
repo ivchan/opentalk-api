@@ -1,28 +1,26 @@
 package opentalk.viewmodel;
 
-import java.util.UUID;
-
 /**
  * Created by ivanchan on 23/11/2016.
  */
 public class ChannelViewModel {
-    private UUID channelKey;
+    private String channelKey;
     private String channelName;
+    private String channelDescription;
     private boolean isPublicChannel;
-    private int channelStatus;
 
     public ChannelViewModel() {
         this.channelKey = null;
         this.channelName = "";
         this.isPublicChannel = false;
-        this.channelStatus = 0;
+        this.channelDescription = "";
     }
 
-    public UUID getChannelKey() {
+    public String getChannelKey() {
         return channelKey;
     }
 
-    public void setChannelKey(UUID channelKey) {
+    public void setChannelKey(String channelKey) {
         this.channelKey = channelKey;
     }
 
@@ -42,11 +40,11 @@ public class ChannelViewModel {
         isPublicChannel = publicChannel;
     }
 
-    public int getChannelStatus() {
-        return channelStatus;
+    public String getChannelDescription() {
+        return channelDescription;
     }
 
-    public void setChannelStatus(int channelStatus) {
-        this.channelStatus = channelStatus;
+    public void setChannelDescription(String channelDescription) {
+        this.channelDescription = channelDescription;
     }
 }

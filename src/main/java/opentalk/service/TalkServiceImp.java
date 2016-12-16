@@ -2,10 +2,9 @@ package opentalk.service;
 
 import opentalk.dao.ChatMessageRepository;
 import opentalk.domainmodel.ChatMessage;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 29/11/2016.
@@ -17,14 +16,14 @@ public class TalkServiceImp implements TalkService {
 
     @Override
     public ChatMessage addMessage(ChatMessage chatMessage) {
-        UUID msgKey;
+        ObjectId msgKey;
 
         if (chatMessage == null) {
             throw new IllegalArgumentException("chatMessage should not be null");
         }
         msgKey = chatMessage.getMessageKey();
         if (msgKey == null) {
-            msgKey = UUID.randomUUID();
+            msgKey = new ObjectId();
             chatMessage.setMessageKey(msgKey);
         }
         chatMessageRepository.save(chatMessage);

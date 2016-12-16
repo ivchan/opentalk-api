@@ -1,11 +1,11 @@
 package opentalk.domainmodel;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 11/7/16.
@@ -14,48 +14,47 @@ import java.util.UUID;
 @Document(collection = "team_channel_member")
 public class ChannelMember extends BasePersistenceModel implements Serializable {
     @Id
-    @Field("channel_member_key")
-    private UUID ChannelMemberKey;
+    private ObjectId ChannelMemberKey;
 
     @Field("user_key")
-    private UUID userKey;
+    private ObjectId userKey;
 
     @Field("channel_key")
-    private UUID channelKey;
+    private ObjectId channelKey;
 
     public ChannelMember() {
-        ChannelMemberKey = UUID.randomUUID();
+        ChannelMemberKey = new ObjectId();
         userKey = null;
         channelKey = null;
     }
 
-    public ChannelMember(UUID channelMemberKey, UUID userKey, UUID channelKey) {
+    public ChannelMember(ObjectId channelMemberKey, ObjectId userKey, ObjectId channelKey) {
         ChannelMemberKey = channelMemberKey;
         this.userKey = userKey;
         this.channelKey = channelKey;
     }
 
-    public UUID getChannelMemberKey() {
+    public ObjectId getChannelMemberKey() {
         return ChannelMemberKey;
     }
 
-    public void setChannelMemberKey(UUID channelMemberKey) {
+    public void setChannelMemberKey(ObjectId channelMemberKey) {
         ChannelMemberKey = channelMemberKey;
     }
 
-    public UUID getUserKey() {
+    public ObjectId getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(UUID userKey) {
+    public void setUserKey(ObjectId userKey) {
         this.userKey = userKey;
     }
 
-    public UUID getChannelKey() {
+    public ObjectId getChannelKey() {
         return channelKey;
     }
 
-    public void setChannelKey(UUID channelKey) {
+    public void setChannelKey(ObjectId channelKey) {
         this.channelKey = channelKey;
     }
 }

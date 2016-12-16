@@ -4,10 +4,9 @@ import opentalk.dao.DomainMemberRepository;
 import opentalk.dao.DomainRepository;
 import opentalk.domainmodel.Domain;
 import opentalk.domainmodel.DomainMember;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 /**
  * Created by Ivan Chan on 11/9/2016.
@@ -20,18 +19,18 @@ public class DomainServiceImp implements DomainService {
     @Autowired
     private DomainMemberRepository _domainMemberRepository;
 
-    private UUID _domainKey;
+    private ObjectId _domainKey;
 
     public DomainServiceImp() {
         this._domainKey = null;
     }
 
-    public DomainServiceImp(UUID domainKey) {
+    public DomainServiceImp(ObjectId domainKey) {
         this._domainKey = domainKey;
     }
 
     @Override
-    public Domain getDomain(UUID domainKey) {
+    public Domain getDomain(ObjectId domainKey) {
         return _domainRepository.findOne(domainKey);
     }
 
@@ -42,8 +41,8 @@ public class DomainServiceImp implements DomainService {
 
     @Override
     public Domain addDomain(Domain domain) {
-        if (domain.getDomainKey().equals(new UUID(0, 0))) {
-            domain.setDomainKey(UUID.randomUUID());
+        if (domain.getDomainKey() == null) {
+            domain.setDomainKey(new ObjectId());
         }
         _domainRepository.save(domain);
         return domain;
@@ -56,7 +55,7 @@ public class DomainServiceImp implements DomainService {
     }
 
     @Override
-    public void deleteDomain(UUID domainKey) {
+    public void deleteDomain(ObjectId domainKey) {
         _domainRepository.delete(domainKey);
     }
 
@@ -66,7 +65,7 @@ public class DomainServiceImp implements DomainService {
     }
 
     @Override
-    public Iterable<DomainMember> listMembers(UUID domainKey) {
+    public Iterable<DomainMember> listMembers(ObjectId domainKey) {
         //return _domainMemberRepository.listMember(domainKey);
         return null;
     }

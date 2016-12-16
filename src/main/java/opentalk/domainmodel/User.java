@@ -4,17 +4,15 @@
 
 package opentalk.domainmodel;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.persistence.*;
-import java.util.*;
 
 @Document(collection = "adm_user")
 public class User extends BasePersistenceModel {
     @Id
-    @Field("user_key")
-    private UUID userKey;
+    private ObjectId userKey;
     @Field("user_id")
     private String userID;
     @Field("user_name")
@@ -23,24 +21,24 @@ public class User extends BasePersistenceModel {
     private String userEmail;
 
     public User() {
-        this.userKey = UUID.randomUUID();
+        this.userKey = new ObjectId();
         this.userID = "";
         this.userName = "";
         this.userEmail = "";
     }
 
-    public User(UUID userKey, String userID, String userName, String userEmail) {
+    public User(ObjectId userKey, String userID, String userName, String userEmail) {
         this.userKey = userKey;
         this.userID = userID;
         this.userName = userName;
         this.userEmail = userEmail;
     }
 
-    public UUID getUserKey() {
+    public ObjectId getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(UUID userKey) {
+    public void setUserKey(ObjectId userKey) {
         this.userKey = userKey;
     }
 

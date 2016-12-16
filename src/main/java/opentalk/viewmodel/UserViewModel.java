@@ -1,12 +1,10 @@
 package opentalk.viewmodel;
 
-import java.util.UUID;
-
 /**
  * Created by ivanchan on 22/11/2016.
  */
 public class UserViewModel {
-    private UUID userKey;
+    private String userKey;
     private String userID;
     private String userName;
     private String userEmail;
@@ -18,18 +16,18 @@ public class UserViewModel {
         this.userEmail = "";
     }
 
-    public UserViewModel(UUID userKey, String userID, String userName, String userEmail) {
+    public UserViewModel(String userKey, String userID, String userName, String userEmail) {
         this.userKey = userKey;
         this.userID = userID;
         this.userName = userName;
         this.userEmail = userEmail;
     }
 
-    public UUID getUserKey() {
+    public String getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(UUID userKey) {
+    public void setUserKey(String userKey) {
         this.userKey = userKey;
     }
 

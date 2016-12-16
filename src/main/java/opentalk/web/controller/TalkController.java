@@ -9,6 +9,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * Created by ivanchan on 29/11/2016.
  */
@@ -31,7 +33,7 @@ public class TalkController extends ApiController {
 
         ChatMessage savedMessage = talkService.addMessage(chatMsg);
 
-        ChatMessageViewModel savedViewModel = new ChatMessageViewModel(savedMessage.getMessageKey(), savedMessage.getChannelKey(), savedMessage.getCreateBy(), "Anonymous", savedMessage.getDateCreated(), savedMessage.getMessageContent());
+        ChatMessageViewModel savedViewModel = new ChatMessageViewModel(savedMessage.getMessageKey(), savedMessage.getChannelKey(), savedMessage.getCreateBy(), "Anonymous", new Date(), savedMessage.getMessageContent());
         return savedViewModel;
     }
 }

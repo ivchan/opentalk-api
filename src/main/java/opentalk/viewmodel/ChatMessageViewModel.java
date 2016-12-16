@@ -1,15 +1,16 @@
 package opentalk.viewmodel;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 29/11/2016.
  */
 public class ChatMessageViewModel {
-    private UUID messageKey;
-    private UUID channelKey;
-    private UUID userKey;
+    private ObjectId messageKey;
+    private ObjectId channelKey;
+    private ObjectId userKey;
     private String userName;
     private Date createDate;
     private String content;
@@ -23,7 +24,7 @@ public class ChatMessageViewModel {
         this.createDate = new Date();
     }
 
-    public ChatMessageViewModel(UUID messageKey, UUID channelKey, UUID userKey, String userName, Date createDate, String content) {
+    public ChatMessageViewModel(ObjectId messageKey, ObjectId channelKey, ObjectId userKey, String userName, Date createDate, String content) {
         this.messageKey = messageKey;
         this.channelKey = channelKey;
         this.userKey = userKey;
@@ -32,27 +33,27 @@ public class ChatMessageViewModel {
         this.content = content;
     }
 
-    public UUID getMessageKey() {
+    public ObjectId getMessageKey() {
         return messageKey;
     }
 
-    public void setMessageKey(UUID messageKey) {
+    public void setMessageKey(ObjectId messageKey) {
         this.messageKey = messageKey;
     }
 
-    public UUID getChannelKey() {
+    public ObjectId getChannelKey() {
         return channelKey;
     }
 
-    public void setChannelKey(UUID channelKey) {
+    public void setChannelKey(ObjectId channelKey) {
         this.channelKey = channelKey;
     }
 
-    public UUID getUserKey() {
+    public ObjectId getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(UUID userKey) {
+    public void setUserKey(ObjectId userKey) {
         this.userKey = userKey;
     }
 

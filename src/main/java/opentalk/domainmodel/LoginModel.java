@@ -1,6 +1,6 @@
 package opentalk.domainmodel;
 
-import java.util.UUID;
+import org.bson.types.ObjectId;
 
 /**
  * Created by ivanchan on 21/11/2016.
@@ -8,7 +8,7 @@ import java.util.UUID;
 public class LoginModel extends BaseDomainModel {
     private String loginName;
     private String loginPassword;
-    private UUID userKey;
+    private ObjectId userKey;
 
     public LoginModel() {
         this.loginName = "";
@@ -38,11 +38,11 @@ public class LoginModel extends BaseDomainModel {
         this.loginPassword = loginPassword;
     }
 
-    public UUID getUserKey() {
+    public ObjectId getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(UUID userKey) {
+    public void setUserKey(ObjectId userKey) {
         this.userKey = userKey;
     }
 }

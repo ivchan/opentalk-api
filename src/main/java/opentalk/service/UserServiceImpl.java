@@ -7,11 +7,11 @@ package opentalk.service;
 import opentalk.dao.UserRepository;
 import opentalk.domainmodel.LoginModel;
 import opentalk.domainmodel.User;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
@@ -19,12 +19,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository _userRepository;
 
     @Override
-    public User getUser(UUID userKey) {
+    public User getUser(ObjectId userKey) {
         if (userKey == null) {
             throw new IllegalArgumentException("User key should not be null");
-        }
-        if (userKey.equals(new UUID(0, 0))) {
-            throw new IllegalArgumentException("User key should not be empty");
         }
         return _userRepository.findOne(userKey);
     }
@@ -47,17 +44,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(UUID userKey) {
+    public void deleteUser(ObjectId userKey) {
         _userRepository.delete(userKey);
     }
 
     @Override
-    public boolean isUserExists(UUID userKey) {
+    public boolean isUserExists(ObjectId userKey) {
         return (_userRepository.findOne(userKey) != null ? true : false);
     }
 
     @Override
-    public UUID checkLogin(LoginModel loginModel) {
+    public ObjectId checkLogin(LoginModel loginModel) {
         //User userLogin = _userRepository.findOne(loginModel.getLoginName());
         //return (userLogin != null) ? userLogin.getUserKey() : null;
         return null;

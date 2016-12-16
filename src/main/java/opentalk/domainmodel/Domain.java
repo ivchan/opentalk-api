@@ -4,39 +4,37 @@
 
 package opentalk.domainmodel;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.persistence.Id;
-import java.util.UUID;
 
 @Document(collection = "adm_domain")
 public class Domain extends BasePersistenceModel {
     @Id
-    @Field("domain_key")
-    private UUID domainKey;
+    private ObjectId domainKey;
     @Field("domain_name")
     private String domainName;
     @Field("full_domain")
     private String fullDomain;
 
     public Domain() {
-        this.domainKey = UUID.randomUUID();
+        this.domainKey = new ObjectId();
         this.domainName = "";
         this.fullDomain = "";
     }
 
-    public Domain(UUID domainKey, String domainName, String fullDomain) {
+    public Domain(ObjectId domainKey, String domainName, String fullDomain) {
         this.domainKey = domainKey;
         this.domainName = domainName;
         this.fullDomain = fullDomain;
     }
 
-    public UUID getDomainKey() {
+    public ObjectId getDomainKey() {
         return domainKey;
     }
 
-    public void setDomainKey(UUID domainKey) {
+    public void setDomainKey(ObjectId domainKey) {
         this.domainKey = domainKey;
     }
 

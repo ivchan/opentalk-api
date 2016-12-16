@@ -1,21 +1,22 @@
 package opentalk.viewmodel;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 21/11/2016.
  */
 public class LoginResultViewModel {
     private String loginResult;
-    private UUID userKey;
+    private ObjectId userKey;
     private String userID;
     private String userName;
     private Date loginTime;
 
     public LoginResultViewModel() {
         this.loginResult = "";
-        this.userKey = new UUID(0, 0);
+        this.userKey = new ObjectId();
         this.userID = "";
         this.userName = "";
         this.loginTime = null;
@@ -29,11 +30,11 @@ public class LoginResultViewModel {
         this.loginResult = loginResult;
     }
 
-    public UUID getUserKey() {
+    public ObjectId getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(UUID userKey) {
+    public void setUserKey(ObjectId userKey) {
         this.userKey = userKey;
     }
 

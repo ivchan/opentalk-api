@@ -2,13 +2,15 @@ package opentalk.web.controller;
 
 import opentalk.domainmodel.Channel;
 import opentalk.service.ChannelService;
+import opentalk.viewmodel.ChannelViewModel;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Ivan Chan on 11/17/2016.
@@ -20,25 +22,52 @@ public class ChannelController extends ApiController{
     private ChannelService _channelService;
 
     @RequestMapping(value = "/channel", method = RequestMethod.GET)
-    public ResponseEntity<List<Channel>> listChannel() {
+    public ResponseEntity<List<ChannelViewModel>> listChannel() {
         List<Channel> listChannel = _channelService.listChannels();
-        return new ResponseEntity<>(listChannel, HttpStatus.OK);
+        List<ChannelViewModel> listViewModel = new ArrayList<>();
+        listChannel.forEach(channel -> {
+           ChannelViewModel vm = new ChannelViewModel();
+           vm.setChannelKey(channel.getChannelKey().toString());
+           vm.setChannelName(channel.getChannelName());
+           vm.setChannelDescription(channel.getChannelDescription());
+           vm.setPublicChannel(channel.isPublicChannel());
+           listViewModel.add(vm);
+        });
+        return new ResponseEntity<>(listViewModel, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/channel_public", method = RequestMethod.GET)
-    public ResponseEntity<List<Channel>> listPublicChannel() {
+    public ResponseEntity<List<ChannelViewModel>> listPublicChannel() {
         List<Channel> listChannel = _channelService.listPublicChannels();
-        return new ResponseEntity<>(listChannel, HttpStatus.OK);
+        List<ChannelViewModel> listViewModel = new ArrayList<>();
+        listChannel.forEach(channel -> {
+            ChannelViewModel vm = new ChannelViewModel();
+            vm.setChannelKey(channel.getChannelKey().toString());
+            vm.setChannelName(channel.getChannelName());
+            vm.setChannelDescription(channel.getChannelDescription());
+            vm.setPublicChannel(channel.isPublicChannel());
+            listViewModel.add(vm);
+        });
+        return new ResponseEntity<>(listViewModel, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/channel_private", method = RequestMethod.GET)
-    public ResponseEntity<List<Channel>> listPrivateChannel() {
+    public ResponseEntity<List<ChannelViewModel>> listPrivateChannel() {
         List<Channel> listChannel = _channelService.listPrivateChannels();
-        return new ResponseEntity<>(listChannel, HttpStatus.OK);
+        List<ChannelViewModel> listViewModel = new ArrayList<>();
+        listChannel.forEach(channel -> {
+            ChannelViewModel vm = new ChannelViewModel();
+            vm.setChannelKey(channel.getChannelKey().toString());
+            vm.setChannelName(channel.getChannelName());
+            vm.setChannelDescription(channel.getChannelDescription());
+            vm.setPublicChannel(channel.isPublicChannel());
+            listViewModel.add(vm);
+        });
+        return new ResponseEntity<>(listViewModel, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/channel/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Channel> getChannel(@PathVariable("id")UUID channelKey) {
+    public ResponseEntity<Channel> getChannel(@PathVariable("id")ObjectId channelKey) {
         if (!_channelService.isChannelExists(channelKey)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -56,7 +85,7 @@ public class ChannelController extends ApiController{
     }
 
     @RequestMapping(value = "/channel/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Channel> updateChannel(@PathVariable("id")UUID channelKey, @RequestBody Channel channel) {
+    public ResponseEntity<Channel> updateChannel(@PathVariable("id")ObjectId channelKey, @RequestBody Channel channel) {
         if (!_channelService.isChannelExists(channelKey)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -65,7 +94,7 @@ public class ChannelController extends ApiController{
     }
 
     @RequestMapping(value = "/channel/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteChannel(@PathVariable("id")UUID channelKey) {
+    public ResponseEntity<Void> deleteChannel(@PathVariable("id")ObjectId channelKey) {
         if (!_channelService.isChannelExists(channelKey)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

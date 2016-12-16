@@ -6,13 +6,13 @@ package opentalk.web.controller;
 
 import opentalk.domainmodel.User;
 import opentalk.service.UserService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class UserController extends ApiController{
@@ -26,7 +26,7 @@ public class UserController extends ApiController{
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUser(@PathVariable("id")UUID userKey) {
+    public ResponseEntity<User> getUser(@PathVariable("id")ObjectId userKey) {
         if (!_userService.isUserExists(userKey)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -53,7 +53,7 @@ public class UserController extends ApiController{
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable("id")UUID userKey) {
+    public ResponseEntity<Void> deleteUser(@PathVariable("id")ObjectId userKey) {
         if (!_userService.isUserExists(userKey)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

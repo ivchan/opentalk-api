@@ -5,6 +5,7 @@ import opentalk.domainmodel.User;
 import opentalk.service.UserService;
 import opentalk.viewmodel.LoginResultViewModel;
 import opentalk.viewmodel.LoginViewModel;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 21/11/2016.
@@ -31,7 +31,7 @@ public class UserLoginController extends ApiController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         LoginModel loginModel = new LoginModel(loginVM.getLoginName(), loginVM.getLoginPassword());
-        UUID userKey = _userService.checkLogin(loginModel);
+        ObjectId userKey = _userService.checkLogin(loginModel);
         if (userKey == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

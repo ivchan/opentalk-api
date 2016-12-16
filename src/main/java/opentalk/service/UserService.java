@@ -6,16 +6,16 @@ package opentalk.service;
 
 import opentalk.domainmodel.LoginModel;
 import opentalk.domainmodel.User;
+import org.bson.types.ObjectId;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface UserService {
-    User getUser(UUID userKey);
+    User getUser(ObjectId userKey);
     List<User> listUsers();
     User addUser(User user);
     User updateUser(User user);
-    void deleteUser(UUID userKey);
-    boolean isUserExists(UUID userKey);
-    UUID checkLogin(LoginModel loginModel);
+    void deleteUser(ObjectId userKey);
+    boolean isUserExists(ObjectId userKey);
+    ObjectId checkLogin(LoginModel loginModel);
 }

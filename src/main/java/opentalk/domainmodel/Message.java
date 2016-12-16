@@ -1,49 +1,46 @@
 package opentalk.domainmodel;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.persistence.*;
-import java.util.UUID;
 
 /**
  * Created by ivanchan on 7/11/2016.
  */
 
-@MappedSuperclass
 public abstract class Message extends BasePersistenceModel {
     @Id
-    @Field("message_id")
-    private UUID messageKey;
+    private ObjectId messageKey;
     @Field("parent_message")
-    private UUID parentMessageKey;
+    private ObjectId parentMessageKey;
     @Field("channel")
-    private UUID channelKey;
+    private ObjectId channelKey;
     @Field("create_by")
-    private UUID createBy;
+    private ObjectId createBy;
     @Field("content")
     private String messageContent;
 
-    public UUID getMessageKey() {
+    public ObjectId getMessageKey() {
         return messageKey;
     }
 
-    public void setMessageKey(UUID messageKey) {
+    public void setMessageKey(ObjectId messageKey) {
         this.messageKey = messageKey;
     }
 
-    public UUID getParentMessageKey() {
+    public ObjectId getParentMessageKey() {
         return parentMessageKey;
     }
 
-    public void setParentMessageKey(UUID parentMessageKey) {
+    public void setParentMessageKey(ObjectId parentMessageKey) {
         this.parentMessageKey = parentMessageKey;
     }
 
-    public UUID getChannelKey() {
+    public ObjectId getChannelKey() {
         return channelKey;
     }
 
-    public void setChannelKey(UUID channelKey) {
+    public void setChannelKey(ObjectId channelKey) {
         this.channelKey = channelKey;
     }
 
@@ -55,11 +52,11 @@ public abstract class Message extends BasePersistenceModel {
         this.messageContent = messageContent;
     }
 
-    public UUID getCreateBy() {
+    public ObjectId getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(UUID createBy) {
+    public void setCreateBy(ObjectId createBy) {
         this.createBy = createBy;
     }
 }
